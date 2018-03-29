@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+        // H5本地存储，localStorage、sessionStorage
+        // localstorage 长久储存   sessionstorage 临时存储
+        if(window.sessionStorage){
+            console.log('ok');
+        }else{
+            console.log('fail');
+        }
+
+        // 设置值
+        sessionStorage.setItem('key_a', 1);
+        // 取值
+        var key_a = sessionStorage.getItem('key_a');
+        console.log(key_a);  // 1
+
+        //删除值
+        sessionStorage.removeItem('key_a');
+        console.log(sessionStorage.getItem('key_a'));// null
+
+        sessionStorage.setItem('key_b', 1);
+        sessionStorage.setItem('key_c', 2);
+
+        // 清除所有键值
+        sessionStorage.clear();
+        console.log(sessionStorage.key_b);  // undefined
+        console.log(sessionStorage.key_c); // undefined 清除所有
+
+        console.log('==================');
+
+
+
+        // 设置值和取值也可以使用.符号，类似于取对象属性
+        // 设置值
+
+        //localStorage 和 sessionStorage 一样的效果
+        localStorage.key_d = 12;
+        // 取值
+        var key_d = localStorage.key_d;
+        console.log(key_d);  // 12
+
+        // 有个小区别，如果这个key没有了。一个返回值undefined，一个是null
+        console.log(sessionStorage.key_null);// undefined
+        console.log(sessionStorage.getItem('key_null'));// null
+
+
+
+        console.log('==========简单演示一个存放对象的例子========');
+
+        var obj = {
+            a : 12,
+            b : [1,2,3,4,5],
+            c : {
+                x : 'a',
+                y : ['bb', 12, 'cc', {a:1,b:2}],
+                z : 1333
+            }
+        };
+
+        sessionStorage.setItem('page', JSON.stringify(obj));
+
+        // 取值
+        var page = JSON.parse(sessionStorage.getItem('page'));
+        console.log(page);   // object 内容
+
+        // 遍历下数组
+        for(var i=0;i< page.b.length;i++){
+            console.log(page.b[i]);  //  12345
+        }
+        // 遍历对象，通常用in
+        for(var j in page.c){
+            console.log(page.c[j]); //  打印c的内容
+        }
+
+        // 删除key
+        sessionStorage.removeItem('page');
+
+
+
+</script>
+</html>

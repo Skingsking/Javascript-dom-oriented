@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+
+            var eleNode = document.getElementsByTagName("img")[0];
+
+            //属性、赋值获取两种方式
+            //1.元素节点.属性或者元素节点[属性]
+            eleNode.src = "image/jd2.png";
+            eleNode.aaa = "bbb";
+            console.log(eleNode.aaa);  // 已经id 转变为bbb
+            console.log(eleNode.src);  // 图片也是第二章了
+            console.log(eleNode.tagName); // IMG
+            console.log(eleNode["title"]);  // 图片
+            console.log(eleNode["className"]); // box
+            console.log(eleNode["alt"]); // 京东狗
+
+            //2.元素节点.方法();
+            console.log(eleNode.getAttribute("id"));  // 最原始的 id  aaa   getAttribute 获取到链接 harde的属性
+            eleNode.setAttribute("id","你好");
+            // 替换
+            eleNode.setAttribute("ccc","ddd");
+
+            eleNode.removeAttribute("id");
+            // 删除
+            console.log(eleNode.id); //为空
+        }
+    </script>
+</head>
+<body>
+<img src="image/jd1.png" class="box" title="图片" alt="京东狗" id="aaa"/>
+</body>
+</html>

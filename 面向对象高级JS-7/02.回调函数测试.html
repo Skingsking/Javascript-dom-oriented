@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+        function A(callback){
+            callback();
+            console.log('我是主函数');
+        }
+    function B(){
+        setTimeout('console.log("我是回调函数")',3000);
+
+    }
+
+    // A调用B
+        // 进行回调之后 延迟3m后 执行
+    A(B);    // 打印我是主函数 然后3秒后 我是回调函数
+
+
+        function aa(fn){
+            alert('这是原来的AA方法')
+            fn();
+        }
+        function bb(){
+            alert('这是回调以后的BB方法')
+        }
+        aa(bb)   //也是a 调用b 的方法
+
+
+
+
+
+
+        //全局变量
+        var allUserData = [];
+
+        //普通的logStuff函数，将内容打印到控制台
+        function logStuff (userData){
+            // 通过判断进行
+            if ( typeof userData === "string")
+            {
+                console.log(userData);
+            }
+            else if ( typeof userData === "object"){
+                for(var item in userData){
+                    console.log(item + ": " + userData[item]);
+                }
+            }
+        }
+
+        //一个接收两个参数的函数，后面一个是回调函数
+        function getInput (options, callback){
+            allUserData.push(options);
+            callback(options);
+        }
+
+        //当我们调用getInput函数时，我们将logStuff作为一个参数传递给它
+        //因此logStuff将会在getInput函数内被回调（或者执行）
+        getInput({name:"Rich",speciality:"Javascript"}, logStuff);
+
+
+
+
+
+        // 允许 多重回调
+        function successCallback(){
+            //在发送之前做点什么
+            //这里做出处理结果
+        }
+
+        function successCallback(){
+            //在信息被成功接收之后做点什么
+        }
+
+        function completeCallback(){
+            //在完成之后做点什么
+        }
+
+        function errorCallback(){
+            //当错误发生时做点什么
+        }
+
+        $.ajax({
+            url:"http://fiddle.jshell.net/favicon.png",
+            success:successCallback,
+            complete:completeCallback,
+            error:errorCallback
+
+        });
+</script>
+</html>

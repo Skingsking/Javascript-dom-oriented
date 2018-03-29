@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var arr = [1, 2, 3];
+
+        //开发人员A想要的sayHello
+        Array.prototype.sayHello =function () {
+            console.log("来呀，互相伤害啊");
+        }
+
+        //开发人员B想要的sayHello
+        Array.prototype.sayHello =function () {
+            console.log("我是一个数组，很高兴认识你，呵呵")
+        }
+
+        //如果直接修改内置对象的原型，会印象整个开发团队
+        arr.sayHello();  // 他会打印第二个 sayHellow 因为前面一个给他层叠了
+
+
+        //扩展内置对象（就是给内置对象新增成员）
+        var str = "  +++a b c+++   ";
+//        去掉字符串的首尾空格
+        console.log(str.trim(""));
+
+        //作业：扩展String内置对象，强化trim功能
+
+        //如何安全的扩展一个内置对象
+
+        function MyArray() {
+            //我自己的属性
+            this.name = "我是一个数组";
+            this.sayHello = function () {
+                console.log("我的sayHello方法");
+            }
+        }
+//
+        var arr = new Array();
+//
+//        //继承之后，我的数组中就有了原生数组对象的所有的属性和方法
+
+
+        // 通过原型 继承了peototype方法
+        MyArray.prototype = arr;  // 用它来继承 arr的方法
+//
+//        MyArray.prototype.safdaf =function () {
+//
+//        }
+//
+        //myArr这个对象就继承自arr
+
+//        MyArray 已经继承了 arr方法 那么定义的myArr 就是新的定义啦
+        var myArr = new MyArray();
+
+        myArr.push(100);
+        myArr.push(2,3,4,5)
+        console.log(myArr);  // 我是一个数组
+        myArr.sayHello()  // 我是seyHellow方法
+//
+//
+//        var arr =  new Array();
+//        function BdeArray(){
+//            this.sayhello=function () {
+//
+//            }
+//        }
+//        BdeArray.prototype = [];
+//
+//        var arr = new BdeArray();
+//        var arr = new MyArray();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var arr = [{name: '张三1'},
+            {name: '张三2'},
+            {name: '张三3'},
+            {name: '张三4'}];
+
+        for (var i = 0; i < arr.length; i++) {
+
+//            arr[i].sayHello = function () {
+//                console.log(i);
+//            }
+
+            arr[i].sayHello = (function () {
+                var j = i;
+                return function () {
+                    console.log(j);
+                }
+            }());
+            // 通过 新定义的j 还有最后多加一个号
+        }
+
+        arr[0].sayHello(); // 0
+        arr[1].sayHello(); // 1
+        console.log(arr);  // 打印出 object 函数
+//        for (var j = 0; j < arr.length; j++) {
+//
+//            arr[j].sayHello();
+//
+//        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
